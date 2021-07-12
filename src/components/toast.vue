@@ -6,10 +6,11 @@
       <div class="content">
         <div class="progress-bar-group">
           <progress
+            class="progress"
             v-if="!isUploadCompleted"
             ref="toast-progress"
             id="toast-progress"
-            :val="progress"
+            :value="progress"
             max="100"
             >{{ progress }}</progress
           >
@@ -28,6 +29,9 @@
 </template>
 
 <style scoped>
+.progress {
+  width: 200px;
+}
 .content {
   display: flex;
   justify-content: space-between;

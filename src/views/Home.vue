@@ -5,6 +5,7 @@
       :isUploadCompleted="vueToast.isUploadCompleted"
       :isActive="vueToast.isActive"
       :title="vueToast.title"
+      :progress="vueToast.progress"
     ></toast>
   </div>
 </template>
