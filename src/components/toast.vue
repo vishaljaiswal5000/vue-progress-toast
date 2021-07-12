@@ -1,0 +1,97 @@
+<template>
+  <div>
+    <div id="myModal" class="toast" v-if="isActive">
+      <h2>{{ title }}</h2>
+      <hr />
+      <div class="content">
+        <div class="progress-bar-group">
+          <progress
+            v-if="!isUploadCompleted"
+            ref="toast-progress"
+            id="toast-progress"
+            :val="progress"
+            max="100"
+            >{{ progress }}</progress
+          >
+        </div>
+        <div class="button-group">
+          <div>
+            <button v-if="!isUploadCompleted">Cancel</button>
+          </div>
+          <div>
+            <button v-if="isUploadCompleted">View Study</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<style scoped>
+.content {
+  display: flex;
+  justify-content: space-between;
+}
+.progress-bar-group {
+  display: flex;
+  justify-content: start;
+}
+.button-group {
+  display: flex;
+  justify-content: end;
+}
+.toast {
+  display: block;
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  width: 350px;
+  border-radius: 4px;
+  /* background-color: #4bb543; */
+  box-shadow: 2px 2px #4bb543;
+  border: 2px solid #4bb543;
+  padding: 10px;
+  /* color: gre; */
+  opacity: 1;
+  animation: toast 500ms cubic-bezier(0.23, 0.82, 0.16, 1.46);
+  animation-iteration-count: 1;
+}
+
+@keyframes toast {
+  0% {
+    opacity: 0;
+    transform: translateY(200px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+</style>
+
+<script>
+export default {
+  props: {
+    isActive: {
+      type: Boolean,
+      default: false,
+    },
+    isUploadCompleted: {
+      type: Boolean,
+      default: false,
+    },
+    title: {
+      type: String,
+      default: "",
+    },
+    progress: {
+      type: Number,
+      default: 0,
+    },
+  },
+  created() {
+    console.log(this.isActive);
+  },
+};
+</script>

@@ -1,73 +1,53 @@
 <template>
   <div>
     <button @click="modalAlert" id="myBtn">Open Modal</button>
-
-    <div id="myModal" class="toast">              
-        <h2>Some text in the Modal..</h2>
-        <div id="button-group">
-          <button>Cancel</button>
-          <button>View Study</button>
-        </div>
-      </div>
+    <toast
+      :isUploadCompleted="vueToast.isUploadCompleted"
+      :isActive="vueToast.isActive"
+      :title="vueToast.title"
+    ></toast>
   </div>
 </template>
 
-<style scoped>
-.toast{
-  display:none;
-  position:fixed;
-  top:10px;
-  right: 10px;
-  width:350px;
-  border-radius: 4px;  
-  background-color:#4bb543;
-  padding:10px;
-  color: white;  
-  opacity:1;
-  animation: toast 500ms cubic-bezier(.23,.82,.16,1.46);
-  animation-iteration-count: 1;
-}
-
-
-@keyframes toast{
-  0%{
-    opacity:0;
-    transform: translateY(200px);
-  }
-
-  100%{
-    opacity:1;
-    transform: translateY(0px);
-  }
-}
-</style>
-
 <script>
+import toast from "../components/toast.vue";
+
 export default {
+  components: {
+    toast,
+  },
   data() {
     return {
-      isUploadCompleted: false,
+      vueToast: {
+        isActive: false,
+        isUploadCompleted: false,
+        title: "Note",
+        progress: 0,
+      },
     };
   },
   methods: {
     modalAlert() {
-      // Get the modal
-      var modal = document.getElementById("myModal");
-
-      // Get the button that opens the modal
-      var btn = document.getElementById("myBtn");
-
-      // When the user clicks on the button, open the modal
-      btn.onclick = function() {
-        modal.style.display = "block";
-      };
-
+      this.vueToast.isActive = true;
+      this.vueToast.title = "File is Uploading";
+      this.vueToast.isUploadCompleted = false;
+      this.vueToast.progress = 0;
       setTimeout(() => {
-        modal.style.display="none";
+        this.vueToast.progress = 30;
+        setTimeout(() => {
+          this.vueToast.progress = 70;
+          setTimeout(() => {
+            this.vueToast.progress = 100;
+            this.vueToast.isActive = true;
+            this.vueToast.isUploadCompleted = true;
+            this.vueToast.title = "File is Uploaded";
+          }, 3000);
+        }, 2000);
+        // this.vueToast.isActive = true;
+        // this.vueToast.isUploadCompleted = true;
+        // this.vueToast.title = "File is Uploaded";
       }, 5000);
-
     },
   },
-  mounted: {},
 };
 </script>
