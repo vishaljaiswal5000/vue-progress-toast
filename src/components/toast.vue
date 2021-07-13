@@ -1,12 +1,12 @@
 <template>
   <div>
     <div id="myModal" class="toast" v-if="isActive">
-      <div style="display:flex; justify-content:space-between">
+      <div class="modalTitle">
         <div>
           <h2>{{ title }}</h2>
         </div>
         <div>
-          <span @click="dismissToast" class="close">&times;</span>
+          <span @click="dismissToast" class="close" style="cursor: pointer;">&times;</span>
         </div>
       </div>
       <hr />
@@ -36,6 +36,10 @@
 </template>
 
 <style scoped>
+.modalTitle {
+  display: flex;
+  justify-content: space-between;
+}
 .progress {
   width: 200px;
 }
@@ -104,10 +108,10 @@ export default {
   created() {
     console.log(this.isActive);
   },
-  methods:{
-    dismissToast(){
-      this.$emit("setDismiss",true);
-    }
-  }
+  methods: {
+    dismissToast() {
+      this.$emit("setDismiss", true);
+    },
+  },
 };
 </script>
