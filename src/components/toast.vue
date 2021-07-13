@@ -3,13 +3,15 @@
     <div id="myModal" class="toast" v-if="isActive">
       <div class="modalTitle">
         <div>
-          <h2>{{ title }}</h2>
+          <h3>{{ title }}</h3>
         </div>
         <div>
-          <span @click="dismissToast" class="close" style="cursor: pointer;">&times;</span>
+          <span @click="dismissToast" class="close" style="cursor: pointer;"
+            >&times;</span
+          >
         </div>
       </div>
-      <hr />
+      <!-- <hr /> -->
       <div class="content">
         <div class="progress-bar-group">
           <progress
@@ -58,15 +60,16 @@
 .toast {
   display: block;
   position: fixed;
+  padding: 20px;
   top: 10px;
   right: 10px;
   width: 350px;
   border-radius: 4px;
-  /* background-color: #4bb543; */
-  box-shadow: 2px 2px #4bb543;
-  border: 2px solid #4bb543;
+  background-color: white;
+  box-shadow: 2px 2px silver;
+  border: 1px solid silver;
   padding: 10px;
-  /* color: gre; */
+  /* color: grey; */
   opacity: 1;
   animation: toast 500ms cubic-bezier(0.23, 0.82, 0.16, 1.46);
   animation-iteration-count: 1;
@@ -82,6 +85,14 @@
     opacity: 1;
     transform: translateY(0px);
   }
+}
+
+button {
+  border: 0;
+  background: none;
+  box-shadow: none;
+  border-radius: 0px;
+  cursor: pointer;
 }
 </style>
 
