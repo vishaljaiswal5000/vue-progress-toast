@@ -1,7 +1,14 @@
 <template>
   <div>
     <div id="myModal" class="toast" v-if="isActive">
-      <h2>{{ title }}</h2>
+      <div style="display:flex; justify-content:space-between">
+        <div>
+          <h2>{{ title }}</h2>
+        </div>
+        <div>
+          <span @click="dismissToast" class="close">&times;</span>
+        </div>
+      </div>
       <hr />
       <div class="content">
         <div class="progress-bar-group">
@@ -97,5 +104,10 @@ export default {
   created() {
     console.log(this.isActive);
   },
+  methods:{
+    dismissToast(){
+      this.$emit("setDismiss",true);
+    }
+  }
 };
 </script>

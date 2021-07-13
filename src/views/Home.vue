@@ -2,6 +2,7 @@
   <div>
     <button @click="modalAlert" id="myBtn">Open Modal</button>
     <toast
+      @setDismiss="vueToast.isActive=false"
       :isUploadCompleted="vueToast.isUploadCompleted"
       :isActive="vueToast.isActive"
       :title="vueToast.title"
